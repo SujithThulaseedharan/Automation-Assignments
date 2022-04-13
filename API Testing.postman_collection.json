@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "4867fa5d-5d03-4d36-bfac-57c281f04ac9",
+		"name": "API Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Space Add and Delete",
+			"item": [
+				{
+					"name": "Space creation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/* ####### RESPONSE HEADER ######### */\r",
+									"pm.test(\"TC_Verify_01 Verified 201 status code is displayed in the response header\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"/* ####### Checkng the type ######### */\r",
+									"pm.test(\"TC_Verify_02 Verified the type displayed in the response body\", \r",
+									"function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Space\");\r",
+									"});\r",
+									"\r",
+									"/* ####### Response Time ######### */\r",
+									"pm.test(\"TC_Verify_03 Verify the response time is less than 200ms\", \r",
+									"function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"/* ####### Title ######### */\r",
+									"pm.test(\"TC_Verify_04 Verified the title displayed in the response body\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Create a new item\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authentication}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"private\": true,\r\n    \"type\": \"Space\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.hub.knime.com/repository/Users/sujith_t/New%20space%{{RandomNumbers}}?overwrite=false",
+							"protocol": "https",
+							"host": [
+								"api",
+								"hub",
+								"knime",
+								"com"
+							],
+							"path": [
+								"repository",
+								"Users",
+								"sujith_t",
+								"New%20space%{{RandomNumbers}}"
+							],
+							"query": [
+								{
+									"key": "overwrite",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleting space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/* ####### RESPONSE HEADER ######### */\r",
+									"pm.test(\"TC_Verify_01 Verified 204 status code is displayed in the response header\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"/* ####### Response Time ######### */\r",
+									"pm.test(\"TC_Verify_03 Verify the response time is less than 300ms\", \r",
+									"function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authentication}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://api.hub.knime.com/repository//Users/sujith_t/New%20space%214",
+							"protocol": "https",
+							"host": [
+								"api",
+								"hub",
+								"knime",
+								"com"
+							],
+							"path": [
+								"repository",
+								"",
+								"Users",
+								"sujith_t",
+								"New%20space%214"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "Space",
+			"value": "208"
+		}
+	]
+}
